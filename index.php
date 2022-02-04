@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
     <title>JobInt</title>
 
@@ -58,16 +58,16 @@ if (isset($_POST['submit'])) {
             <div class="menu">
                 <a href="#">Contattaci</a>
                 <a href="#">FAQ</a>
-                <a href="register.php">Registrati</a>
+                <a href="php/register.php">Registrati</a>
             </div>
         </nav>
     </div>
     <div class="content">
         <div class="logo-container">
-            <img class="logo" src="../Resource/logo.png">
+            <img class="logo" src="Resource/logo.png">
         </div>
         <div class="form-container">
-            <img class="logo-accesso" src="../Resource/accesso.png">
+            <img class="logo-accesso" src="Resource/accesso.png">
             <form action="" method="POST" class="login-email" >
                 <div class="input-group">
                     <input type="email" placeholder="Email" name="email" value="<?php echo $email; ?>" required>
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
                     <button name="submit" class="btn"><a id="button-text">Accedi</a></button>
                 </div>
             </form>
-            <p>Non hai un account JobInt? <a href="register.php">Lavoratore</a> <a href="register.php">Azienda</a></p>
+            <p>Non hai un account JobInt? <a href="php/register.php">Lavoratore</a> <a href="php/register.php">Azienda</a></p>
             <p>Hai dimenticato la password? <a href="#">Recupera</a></p>
         </div>
     </div>
