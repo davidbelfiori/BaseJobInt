@@ -12,37 +12,36 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_POST['submit'])) {
     //inserimento delle variabili
-	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-	$cpassword = md5($_POST['cpassword']);
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    $cpassword = md5($_POST['cpassword']);
 
     //confronto delle password(pw,cpw)
-	if ($password == $cpassword) {
+    if ($password == $cpassword) {
         //selezione delle email presenti nel database
-		$sql = "SELECT * FROM provaphplogin.users WHERE email='$email'";
-		$result = mysqli_query($conn, $sql);
-		if (!$result->num_rows > 0) {
+        $sql = "SELECT * FROM provaphplogin.users WHERE email='$email'";
+        $result = mysqli_query($conn, $sql);
+        if (!$result->num_rows > 0) {
             //insrimento valori nel db
-			$sql = "INSERT INTO provaphplogin.users (username, email, password)
+            $sql = "INSERT INTO provaphplogin.users (username, email, password)
 					VALUES ('$username', '$email', '$password')";
-			$result = mysqli_query($conn, $sql);
-			if ($result) {
-				echo "<script>alert('Wow! User Registration Completed.')</script>";
-				$username = "";
-				$email = "";
-				$_POST['password'] = "";
-				$_POST['cpassword'] = "";
-			} else {
-				echo "<script>alert('Woops! Something Wrong Went.')</script>";
-			}
-		} else {
-			echo "<script>alert('Woops! Email Already Exists.')</script>";
-		}
-		
-	} else {
-		echo "<script>alert('Password Not Matched.')</script>";
-	}
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                echo "<script>alert('Wow! User Registration Completed.')</script>";
+                $username = "";
+                $email = "";
+                $_POST['password'] = "";
+                $_POST['cpassword'] = "";
+            } else {
+                echo "<script>alert('Woops! Something Wrong Went.')</script>";
+            }
+        } else {
+            echo "<script>alert('Woops! Email Already Exists.')</script>";
+        }
+    } else {
+        echo "<script>alert('Password Not Matched.')</script>";
+    }
 }
 
 ?>
