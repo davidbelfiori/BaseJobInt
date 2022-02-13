@@ -1,6 +1,6 @@
 <?php 
 //richiamo del file con la conf. del db
-include '../db/config.php';
+include 'db/config.php';
 
 //avvio della sessione
 session_start();
@@ -9,7 +9,7 @@ error_reporting(0);
 
 
 if (isset($_SESSION['username'])) {
-    header("Location: welcome.php");
+    header("Location: php/welcome.php");
 }
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
@@ -18,12 +18,12 @@ if (isset($_POST['submit'])) {
 	$password = md5($_POST['password']);
 
     //ricerca nel database delle credenziali con il confronto tra email e password inserite con quelle presenti nel db
-	$sql = " SELECT * FROM provaphplogin.users WHERE email='$email' AND password='$password'";
+	$sql = " SELECT * FROM provaphplogin.user WHERE email='$email' AND password='$password'";
 	$result = mysqli_query($conn, $sql);
 	if ($result->num_rows > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$_SESSION['username'] = $row['username'];
-		header("Location: welcome.php");
+		header("Location: php/welcome.php");
 	} else {
 		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
 	}
@@ -58,7 +58,8 @@ if (isset($_POST['submit'])) {
             <div class="menu">
                 <a href="#">Contattaci</a>
                 <a href="#">FAQ</a>
-                <a href="php/register.php">Registrati</a>
+                <a href="php/regUserAzienda.php">Registrati</a>
+
             </div>
         </nav>
     </div>
@@ -74,15 +75,17 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="input-group">
                     <input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required>
+
                 </div>
                 <div class="input-group">
                     <button name="submit" class="btn"><a id="button-text">Accedi</a></button>
                 </div>
             </form>
-            <p>Non hai un account JobInt? <a href="php/register.php">Lavoratore</a> <a href="php/register.php">Azienda</a></p>
+            <p>Non hai un account JobInt? <a href="php/regUserLavoratore.php">Lavoratore</a> <a href="php/regUserAzienda.php">Azienda</a></p>
             <p>Hai dimenticato la password? <a href="#">Recupera</a></p>
         </div>
     </div>
 </div>
+
 </body>
 </html>
