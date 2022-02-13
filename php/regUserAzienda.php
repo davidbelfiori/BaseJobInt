@@ -13,36 +13,34 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_POST['submit'])) {
     //inserimento delle variabili
-	$username = $_POST['username'];
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-	$cpassword = md5($_POST['cpassword']);
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
+    $cpassword = md5($_POST['cpassword']);
 
     //confronto delle password(pw,cpw)
-	if ($password == $cpassword) {
+    if ($password == $cpassword) {
         //selezione delle email presenti nel database
-		$sql = "SELECT * FROM provaphplogin.user WHERE email='$email'";
-		$result = mysqli_query($conn, $sql);
-		if (!$result->num_rows > 0) {
+        $sql = "SELECT * FROM provaphplogin.user WHERE email='$email'";
+        $result = mysqli_query($conn, $sql);
+        if (!$result->num_rows > 0) {
             //insrimento valori nel db
-			$sql = "INSERT INTO provaphplogin.user (username, email, password,typeuser)
+            $sql = "INSERT INTO provaphplogin.user (username, email, password,typeuser)
 					VALUES ('$username', '$email', '$password','azienda')";
-			$result = mysqli_query($conn, $sql);
-			if ($result) {
-				echo "<script>alert('Registrazione Completata')</script>";
+            $result = mysqli_query($conn, $sql);
+            if ($result) {
+                echo "<script>alert('Registrazione Completata')</script>";
                 header('location: ../index.php');
                 exit;
-
-			} else {
-				echo "<script>alert('Qualcosa è andato storto.')</script>";
-			}
-		} else {
-			echo "<script>alert('Email non disponibile.')</script>";
-		}
-		
-	} else {
-		echo "<script>alert('Le password non corrispondono.')</script>";
-	}
+            } else {
+                echo "<script>alert('Qualcosa è andato storto.')</script>";
+            }
+        } else {
+            echo "<script>alert('Email non disponibile.')</script>";
+        }
+    } else {
+        echo "<script>alert('Le password non corrispondono.')</script>";
+    }
 }
 
 ?>

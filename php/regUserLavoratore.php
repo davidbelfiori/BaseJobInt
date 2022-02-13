@@ -32,14 +32,12 @@ if (isset($_POST['submit'])) {
                 echo "<script>alert('Registrazione Completata')</script>";
                 header('location: ../index.php');
                 exit;
-
             } else {
                 echo "<script>alert('Qualcosa è andato storto.')</script>";
             }
         } else {
             echo "<script>alert('Email non disponibile.')</script>";
         }
-
     } else {
         echo "<script>alert('Le password non corrispondono.')</script>";
     }

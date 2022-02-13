@@ -1,4 +1,4 @@
-<?php 
+<?php
 //richiamo del file con la conf. del db
 include 'db/config.php';
 
@@ -13,20 +13,19 @@ if (isset($_SESSION['username'])) {
 }
 //controllo delle credenziali email e password
 if (isset($_POST['submit'])) {
-
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
+    $email = $_POST['email'];
+    $password = md5($_POST['password']);
 
     //ricerca nel database delle credenziali con il confronto tra email e password inserite con quelle presenti nel db
-	$sql = " SELECT * FROM provaphplogin.user WHERE email='$email' AND password='$password'";
-	$result = mysqli_query($conn, $sql);
-	if ($result->num_rows > 0) {
-		$row = mysqli_fetch_assoc($result);
-		$_SESSION['username'] = $row['username'];
-		header("Location: php/welcome.php");
-	} else {
-		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
-	}
+    $sql = " SELECT * FROM provaphplogin.user WHERE email='$email' AND password='$password'";
+    $result = mysqli_query($conn, $sql);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+        header("Location: php/welcome.php");
+    } else {
+        echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
+    }
 }
 
 ?>
